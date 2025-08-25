@@ -1,0 +1,17 @@
+{
+  "id": 1,
+  "kode_transaksi": "TRX001",
+  "buku": {
+    "id": 1,
+    "judul": "Flutter untuk Pemula",
+    "penulis": "John Doe",
+    "penerbit": "Informatika",
+    "tahun_terbit": 2023,
+    "isbn": "978-602-1234-567-8",
+    "cover_url": "https://example.com/cover/flutter.png",
+    "kategori": {
+      "id": 1,
+      "nama": "Teknologi"
+    }
+  }
+}

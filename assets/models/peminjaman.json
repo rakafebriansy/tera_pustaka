@@ -1,0 +1,12 @@
+{
+  "kode_transaksi": "TRX001",
+  "user": {
+    "id": 1,
+    "nama": "Raka Febrian",
+    "email": "raka@example.com",
+    "role": "anggota"
+  },
+  "tanggal_pinjam": "2025-08-25T10:00:00.000Z",
+  "tanggal_kembali": null,
+  "status": "dipinjam"
+}

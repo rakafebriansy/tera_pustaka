@@ -4,8 +4,38 @@ import '../modules/auth/login/bindings/auth_login_binding.dart';
 import '../modules/auth/login/views/auth_login_view.dart';
 import '../modules/auth/register/bindings/auth_register_binding.dart';
 import '../modules/auth/register/views/auth_register_view.dart';
+import '../modules/buku/buku_create/bindings/buku_buku_create_binding.dart';
+import '../modules/buku/buku_create/views/buku_buku_create_view.dart';
+import '../modules/buku/buku_detail/bindings/buku_buku_detail_binding.dart';
+import '../modules/buku/buku_detail/views/buku_buku_detail_view.dart';
+import '../modules/buku/buku_edit/bindings/buku_buku_edit_binding.dart';
+import '../modules/buku/buku_edit/views/buku_buku_edit_view.dart';
+import '../modules/buku/buku_kategori_create/bindings/buku_buku_kategori_create_binding.dart';
+import '../modules/buku/buku_kategori_create/views/buku_buku_kategori_create_view.dart';
+import '../modules/buku/buku_kategori_edit/bindings/buku_buku_kategori_edit_binding.dart';
+import '../modules/buku/buku_kategori_edit/views/buku_buku_kategori_edit_view.dart';
+import '../modules/buku/buku_kategori_list/bindings/buku_buku_kategori_list_binding.dart';
+import '../modules/buku/buku_kategori_list/views/buku_buku_kategori_list_view.dart';
+import '../modules/buku/buku_list/bindings/buku_buku_list_binding.dart';
+import '../modules/buku/buku_list/views/buku_buku_list_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/kuis/kuis_attempt/bindings/kuis_kuis_attempt_binding.dart';
+import '../modules/kuis/kuis_attempt/views/kuis_kuis_attempt_view.dart';
+import '../modules/kuis/kuis_create/bindings/kuis_kuis_create_binding.dart';
+import '../modules/kuis/kuis_create/views/kuis_kuis_create_view.dart';
+import '../modules/kuis/kuis_edit/bindings/kuis_kuis_edit_binding.dart';
+import '../modules/kuis/kuis_edit/views/kuis_kuis_edit_view.dart';
+import '../modules/kuis/kuis_list/bindings/kuis_kuis_list_binding.dart';
+import '../modules/kuis/kuis_list/views/kuis_kuis_list_view.dart';
+import '../modules/peminjaman/peminjaman_create/bindings/peminjaman_peminjaman_create_binding.dart';
+import '../modules/peminjaman/peminjaman_create/views/peminjaman_peminjaman_create_view.dart';
+import '../modules/peminjaman/peminjaman_detail/bindings/peminjaman_peminjaman_detail_binding.dart';
+import '../modules/peminjaman/peminjaman_detail/views/peminjaman_peminjaman_detail_view.dart';
+import '../modules/peminjaman/peminjaman_list/bindings/peminjaman_peminjaman_list_binding.dart';
+import '../modules/peminjaman/peminjaman_list/views/peminjaman_peminjaman_list_view.dart';
+import '../modules/profile/profile_detail/bindings/profile_profile_detail_binding.dart';
+import '../modules/profile/profile_detail/views/profile_profile_detail_view.dart';
 
 part 'app_routes.dart';
 
@@ -29,6 +59,81 @@ class AppPages {
       name: _Paths.AUTH_REGISTER,
       page: () => const AuthRegisterView(),
       binding: AuthRegisterBinding(),
+    ),
+    GetPage(
+      name: _Paths.BUKU_BUKU_LIST,
+      page: () => const BukuBukuListView(),
+      binding: BukuBukuListBinding(),
+    ),
+    GetPage(
+      name: _Paths.BUKU_BUKU_DETAIL,
+      page: () => const BukuBukuDetailView(),
+      binding: BukuBukuDetailBinding(),
+    ),
+    GetPage(
+      name: _Paths.BUKU_BUKU_KATEGORI_LIST,
+      page: () => const BukuBukuKategoriListView(),
+      binding: BukuBukuKategoriListBinding(),
+    ),
+    GetPage(
+      name: _Paths.PEMINJAMAN_PEMINJAMAN_DETAIL,
+      page: () => const PeminjamanPeminjamanDetailView(),
+      binding: PeminjamanPeminjamanDetailBinding(),
+    ),
+    GetPage(
+      name: _Paths.PEMINJAMAN_PEMINJAMAN_LIST,
+      page: () => const PeminjamanPeminjamanListView(),
+      binding: PeminjamanPeminjamanListBinding(),
+    ),
+    GetPage(
+      name: _Paths.BUKU_BUKU_CREATE,
+      page: () => const BukuBukuCreateView(),
+      binding: BukuBukuCreateBinding(),
+    ),
+    GetPage(
+      name: _Paths.BUKU_BUKU_EDIT,
+      page: () => const BukuBukuEditView(),
+      binding: BukuBukuEditBinding(),
+    ),
+    GetPage(
+      name: _Paths.BUKU_BUKU_KATEGORI_CREATE,
+      page: () => const BukuBukuKategoriCreateView(),
+      binding: BukuBukuKategoriCreateBinding(),
+    ),
+    GetPage(
+      name: _Paths.BUKU_BUKU_KATEGORI_EDIT,
+      page: () => const BukuBukuKategoriEditView(),
+      binding: BukuBukuKategoriEditBinding(),
+    ),
+    GetPage(
+      name: _Paths.PEMINJAMAN_PEMINJAMAN_CREATE,
+      page: () => const PeminjamanPeminjamanCreateView(),
+      binding: PeminjamanPeminjamanCreateBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILE_PROFILE_DETAIL,
+      page: () => const ProfileProfileDetailView(),
+      binding: ProfileProfileDetailBinding(),
+    ),
+    GetPage(
+      name: _Paths.KUIS_KUIS_CREATE,
+      page: () => const KuisKuisCreateView(),
+      binding: KuisKuisCreateBinding(),
+    ),
+    GetPage(
+      name: _Paths.KUIS_KUIS_LIST,
+      page: () => const KuisKuisListView(),
+      binding: KuisKuisListBinding(),
+    ),
+    GetPage(
+      name: _Paths.KUIS_KUIS_EDIT,
+      page: () => const KuisKuisEditView(),
+      binding: KuisKuisEditBinding(),
+    ),
+    GetPage(
+      name: _Paths.KUIS_KUIS_ATTEMPT,
+      page: () => const KuisKuisAttemptView(),
+      binding: KuisKuisAttemptBinding(),
     ),
   ];
 }

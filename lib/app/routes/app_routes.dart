@@ -24,6 +24,7 @@ abstract class Routes {
   static const KUIS_KUIS_EDIT = _Paths.KUIS_KUIS_EDIT;
   static const KUIS_KUIS_ATTEMPT = _Paths.KUIS_KUIS_ATTEMPT;
   static const SPLASH = _Paths.SPLASH;
+  static const ONBOARDING = _Paths.ONBOARDING;
 }
 
 abstract class _Paths {
@@ -47,4 +48,5 @@ abstract class _Paths {
   static const KUIS_KUIS_EDIT = '/kuis-edit';
   static const KUIS_KUIS_ATTEMPT = '/kuis-attempt';
   static const SPLASH = '/splash';
+  static const ONBOARDING = '/onboarding';
 }

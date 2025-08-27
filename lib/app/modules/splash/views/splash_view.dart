@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tera_pustaka/app/theme/app_%20colors.dart';
 
 import '../controllers/splash_controller.dart';
 import '../../../assets_manager.dart' as assets;
@@ -31,7 +32,7 @@ class SplashView extends GetView<SplashController> {
                   'Tera Pustaka',
                   style: GoogleFonts.ubuntu(
                     fontWeight: FontWeight.w600,
-                    color: Color(0xFF6290FD),
+                    color: AppColors.primary,
                     fontSize: 36.sp,
                   ),
                 ),

@@ -28,6 +28,8 @@ import '../modules/kuis/kuis_edit/bindings/kuis_kuis_edit_binding.dart';
 import '../modules/kuis/kuis_edit/views/kuis_kuis_edit_view.dart';
 import '../modules/kuis/kuis_list/bindings/kuis_kuis_list_binding.dart';
 import '../modules/kuis/kuis_list/views/kuis_kuis_list_view.dart';
+import '../modules/onboarding/bindings/onboarding_binding.dart';
+import '../modules/onboarding/views/onboarding_view.dart';
 import '../modules/peminjaman/peminjaman_create/bindings/peminjaman_peminjaman_create_binding.dart';
 import '../modules/peminjaman/peminjaman_create/views/peminjaman_peminjaman_create_view.dart';
 import '../modules/peminjaman/peminjaman_detail/bindings/peminjaman_peminjaman_detail_binding.dart';
@@ -141,6 +143,11 @@ class AppPages {
       name: _Paths.SPLASH,
       page: () => const SplashView(),
       binding: SplashBinding(),
+    ),
+    GetPage(
+      name: _Paths.ONBOARDING,
+      page: () => const OnboardingView(),
+      binding: OnboardingBinding(),
     ),
   ];
 }

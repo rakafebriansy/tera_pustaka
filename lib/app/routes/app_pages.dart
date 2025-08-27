@@ -36,13 +36,15 @@ import '../modules/peminjaman/peminjaman_list/bindings/peminjaman_peminjaman_lis
 import '../modules/peminjaman/peminjaman_list/views/peminjaman_peminjaman_list_view.dart';
 import '../modules/profile/profile_detail/bindings/profile_profile_detail_binding.dart';
 import '../modules/profile/profile_detail/views/profile_profile_detail_view.dart';
+import '../modules/splash/bindings/splash_binding.dart';
+import '../modules/splash/views/splash_view.dart';
 
 part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.HOME;
+  static const INITIAL = Routes.SPLASH;
 
   static final routes = [
     GetPage(
@@ -134,6 +136,11 @@ class AppPages {
       name: _Paths.KUIS_KUIS_ATTEMPT,
       page: () => const KuisKuisAttemptView(),
       binding: KuisKuisAttemptBinding(),
+    ),
+    GetPage(
+      name: _Paths.SPLASH,
+      page: () => const SplashView(),
+      binding: SplashBinding(),
     ),
   ];
 }

@@ -27,7 +27,7 @@ class SecondOnboardingView extends StatelessWidget {
               ),
             ),
             Text(
-              'Silakan Login atau Sign in jika belum punya akun',
+              'Silakan Masuk atau Daftar jika belum punya akun',
               style: GoogleFonts.poppins(
                 fontSize: 16.sp,
                 fontWeight: FontWeight.w500,

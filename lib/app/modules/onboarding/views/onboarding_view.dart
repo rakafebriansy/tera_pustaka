@@ -82,7 +82,7 @@ class OnboardingView extends GetView<OnboardingController> {
                             Get.offAllNamed(Routes.AUTH_LOGIN);
                           },
                           child: Text(
-                            "Sign In",
+                            "Masuk",
                             style: TextStyle(
                               fontSize: 18.sp,
                               fontWeight: FontWeight.bold,
@@ -97,7 +97,7 @@ class OnboardingView extends GetView<OnboardingController> {
                               vertical: 12.sp,
                             ),
                             side: BorderSide(
-                              width: 4.sp,
+                              width: 3.sp,
                               color: AppColors.primary
                             ),
                             shape: RoundedRectangleBorder(
@@ -108,7 +108,7 @@ class OnboardingView extends GetView<OnboardingController> {
                             Get.offAllNamed(Routes.AUTH_REGISTER);
                           },
                           child: Text(
-                            "Sign Up",
+                            "Daftar",
                             style: TextStyle(
                               fontSize: 18.sp,
                               fontWeight: FontWeight.bold,

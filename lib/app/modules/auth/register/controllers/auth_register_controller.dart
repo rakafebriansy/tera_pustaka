@@ -1,9 +1,13 @@
 import 'package:get/get.dart';
 
 class AuthRegisterController extends GetxController {
-  //TODO: Implement AuthRegisterController
+  String? username;
+  String? email;
+  String? password;
+  String? confirmPassword;
+  String? role;
+  Rx<bool> isCheckedTnC = false.obs;
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
@@ -18,6 +22,4 @@ class AuthRegisterController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
-  void increment() => count.value++;
 }

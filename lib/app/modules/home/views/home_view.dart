@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tera_pustaka/app/partials/home/baca/baca_view.dart';
+import 'package:tera_pustaka/app/partials/home/nulis/nulis_view.dart';
 
 import '../controllers/home_controller.dart';
 import '../../../assets_manager.dart' as assets;
@@ -13,7 +14,7 @@ class HomeView extends GetView<HomeController> {
 
   final List<Widget> _pages = const [
     BacaView(),
-    Center(child: Text("Nulis Page")),
+    NulisView(),
     Center(child: Text("Misi Page")),
     Center(child: Text("Profile Page")),
   ];
@@ -50,7 +51,7 @@ class HomeView extends GetView<HomeController> {
           selectedIndex: controller.currentIndex.value,
           onDestinationSelected: controller.changePage,
           destinations: const [
-            NavigationDestination(icon: Icon(Icons.home), label: "Baca"),
+            NavigationDestination(icon: Icon(Icons.menu_book), label: "Baca"),
             NavigationDestination(icon: Icon(Icons.edit), label: "Nulis"),
             NavigationDestination(icon: Icon(Icons.star), label: "Misi"),
             NavigationDestination(icon: Icon(Icons.person), label: "Profile"),

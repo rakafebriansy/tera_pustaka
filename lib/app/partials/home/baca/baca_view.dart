@@ -23,6 +23,7 @@ class BacaView extends GetView<BacaController> {
               filled: true,
               fillColor: Color(0xFFEFF1F5),
               hintText: "Cari buku...",
+              contentPadding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
               prefixIcon: const Icon(Icons.search),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12.sp),

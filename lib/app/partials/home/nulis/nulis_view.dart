@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:tera_pustaka/app/components/navs/app_circle_menu_button.dart';
 import 'package:tera_pustaka/app/theme/app_%20colors.dart';
 import './nulis_controller.dart';

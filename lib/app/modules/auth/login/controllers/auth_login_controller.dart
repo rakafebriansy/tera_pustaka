@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 
 class AuthLoginController extends GetxController {
-  //TODO: Implement AuthLoginController
+  String? username;
+  String? password;
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
@@ -18,6 +18,4 @@ class AuthLoginController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
-  void increment() => count.value++;
 }

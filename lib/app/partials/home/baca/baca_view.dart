@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tera_pustaka/app/components/navs/app_buku_card.dart';
+import 'package:tera_pustaka/app/routes/app_pages.dart';
 import './baca_controller.dart';
 
 class BacaView extends GetView<BacaController> {
@@ -62,18 +64,11 @@ class BacaView extends GetView<BacaController> {
                         separatorBuilder: (context, index) =>
                             SizedBox(width: 12.sp),
                         itemBuilder: (context, index) {
-                          return Container(
-                            width: 100.sp,
-                            decoration: BoxDecoration(
-                              color: Colors.blue,
-                              borderRadius: BorderRadius.circular(12.sp),
-                            ),
-                            child: Center(
-                              child: Text(
-                                controller.recommendationBooks[index],
-                                style: const TextStyle(color: Colors.white),
-                              ),
-                            ),
+                          return AppBukuCard(
+                            onTap: () {
+                              Get.toNamed(Routes.BUKU_BUKU_DETAIL);
+                            },
+                            label: controller.recommendationBooks[index],
                           );
                         },
                       ),

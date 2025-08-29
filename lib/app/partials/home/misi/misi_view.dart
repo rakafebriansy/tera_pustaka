@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:tera_pustaka/app/components/navs/app_circle_menu_button.dart';
-import 'package:tera_pustaka/app/theme/app_%20colors.dart';
 import './misi_controller.dart';
 
 class MisiView extends GetView<MisiController> {
@@ -34,14 +32,14 @@ class MisiView extends GetView<MisiController> {
           children: [
             ListView.builder(
               shrinkWrap: true,
-              // physics: NeverScrollableScrollPhysics(),
               itemCount: controller.myOngoingMissions.length,
               itemBuilder: (context, index) {
                 return ExpansionTile(
                   title: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(Icons.abc),
+                      Icon(Icons.toc_outlined),
+                      SizedBox(width: 5.sp,),
                       Text(controller.myOngoingMissions[index]),
                     ],
                   ),
@@ -56,7 +54,30 @@ class MisiView extends GetView<MisiController> {
                 );
               },
             ),
-            Center(child: Text('Buku Page')),
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: controller.myOngoingMissions.length,
+              itemBuilder: (context, index) {
+                return ExpansionTile(
+                  title: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.toc_outlined),
+                      SizedBox(width: 5.sp,),
+                      Text(controller.myOngoingMissions[index]),
+                    ],
+                  ),
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Row(
+                        children: [Text(controller.myOngoingMissions[index])],
+                      ),
+                    ),
+                  ],
+                );
+              },
+            ),
           ],
         ),
       ),

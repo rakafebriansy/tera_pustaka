@@ -36,8 +36,6 @@ import '../modules/peminjaman/peminjaman_detail/bindings/peminjaman_peminjaman_d
 import '../modules/peminjaman/peminjaman_detail/views/peminjaman_peminjaman_detail_view.dart';
 import '../modules/peminjaman/peminjaman_list/bindings/peminjaman_peminjaman_list_binding.dart';
 import '../modules/peminjaman/peminjaman_list/views/peminjaman_peminjaman_list_view.dart';
-import '../modules/profile/profile_detail/bindings/profile_profile_detail_binding.dart';
-import '../modules/profile/profile_detail/views/profile_profile_detail_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
 
@@ -113,11 +111,6 @@ class AppPages {
       name: _Paths.PEMINJAMAN_PEMINJAMAN_CREATE,
       page: () => const PeminjamanPeminjamanCreateView(),
       binding: PeminjamanPeminjamanCreateBinding(),
-    ),
-    GetPage(
-      name: _Paths.PROFILE_PROFILE_DETAIL,
-      page: () => const ProfileProfileDetailView(),
-      binding: ProfileProfileDetailBinding(),
     ),
     GetPage(
       name: _Paths.KUIS_KUIS_CREATE,

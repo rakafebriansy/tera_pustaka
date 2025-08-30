@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tera_pustaka/app/components/navs/app_circle_menu_button.dart';
+import 'package:tera_pustaka/app/routes/app_pages.dart';
 import 'package:tera_pustaka/app/theme/app_%20colors.dart';
 import './nulis_controller.dart';
 
@@ -51,7 +52,9 @@ class NulisView extends GetView<NulisController> {
                   backgroundColor: AppColors.secondary,
                   child: Icon(Icons.add, color: Colors.white, weight: 2),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Get.toNamed(Routes.BUKU_BUKU_CREATE);
+                },
               ),
             ],
           ),
@@ -95,8 +98,7 @@ class NulisView extends GetView<NulisController> {
               shrinkWrap: true,
               // physics: NeverScrollableScrollPhysics(),
               itemCount: controller.myWritings.length,
-              separatorBuilder: (context, index) =>
-                  SizedBox(height: 12.sp),
+              separatorBuilder: (context, index) => SizedBox(height: 12.sp),
               itemBuilder: (context, index) {
                 return Container(
                   height: 84.sp,

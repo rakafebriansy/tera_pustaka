@@ -39,6 +39,10 @@ dependencies:
   google_fonts: ^6.3.0
   flutter_screenutil: ^5.9.3
   smooth_page_indicator: ^1.2.1
+  url_launcher: ^6.3.2
+  quill_native_bridge: ^11.0.1
+  flutter_keyboard_visibility_temp_fork: ^0.1.5
+  flutter_quill: ^11.4.2
 
 dev_dependencies:
   flutter_test:

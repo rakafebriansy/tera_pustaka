@@ -24,11 +24,12 @@ class AppDetailBukuInfoCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Icon(iconData),
+          SizedBox(width: 6.sp),
           Expanded(
             child: Text(
               label,
               style: GoogleFonts.poppins(),
-              maxLines: 1,
+              maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
           ),

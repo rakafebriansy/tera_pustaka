@@ -28,5 +28,14 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<!-- Add-only permission: Required on macOS 11 and later if the album name is not specified, explaining why the app needs add-only access to the photo library -->
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Your description here</string>
+
+	<!-- Read-write permission: Always required on macOS 10.15 and earlier, and also required on macOS 11 and later if the album name is specified, explaining why the app needs read-write access to the photo library -->
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Your description here</string>
+	<key>com.apple.security.files.user-selected.read-write</key>
+	<true/>
 </dict>
 </plist>

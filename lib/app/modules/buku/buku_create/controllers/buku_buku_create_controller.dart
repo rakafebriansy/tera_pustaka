@@ -4,9 +4,13 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_quill/flutter_quill.dart';
+import 'package:multi_dropdown/multi_dropdown.dart';
 import 'package:tera_pustaka/app/modules/buku/buku_model.dart';
 import 'package:tera_pustaka/app/modules/buku/kategori_buku_model.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:tera_pustaka/app/utilities/database_helper.dart';
 
 class BukuBukuCreateController extends GetxController {
   final formKey = GlobalKey<FormState>();
@@ -18,10 +22,10 @@ class BukuBukuCreateController extends GetxController {
   final isbnCtrl = TextEditingController();
 
   QuillController quillCtrl = QuillController.basic();
+  final multiselectCtrl = MultiSelectController<KategoriBuku>();
 
-  var kategoriList = <KategoriBuku>[].obs;
-  var selectedKategori = Rxn<KategoriBuku>();
   var pdfFile = Rxn<File>();
+  var kategoriList = <DropdownItem<KategoriBuku>>[].obs;
 
   @override
   void onInit() {
@@ -46,7 +50,13 @@ class BukuBukuCreateController extends GetxController {
     );
     final List<dynamic> data = jsonDecode(jsonString);
 
-    kategoriList.value = data.map((e) => KategoriBuku.fromJson(e)).toList();
+    var kategoris = data.map((e) {
+      final kategori = KategoriBuku.fromJson(e);
+      return DropdownItem(label: kategori.nama, value: kategori);
+    }).toList();
+
+    multiselectCtrl.setItems(kategoris);
+    kategoriList.value = kategoris;
   }
 
   Future<void> pickPdf() async {
@@ -60,11 +70,22 @@ class BukuBukuCreateController extends GetxController {
     }
   }
 
-  void saveBuku() {
+  Future<String> savePdfLocally(File pdfFile) async {
+    final dir = await getApplicationDocumentsDirectory();
+    final newPath = join(dir.path, basename(pdfFile.path));
+    final newFile = await pdfFile.copy(newPath);
+    return newFile.path;
+  }
+
+  void saveBuku() async {
     if (formKey.currentState!.validate()) {
+      String? savedPdfPath;
+
       if (pdfFile.value != null) {
-        print("PDF path: ${pdfFile.value!.path}");
+        savedPdfPath = await savePdfLocally(pdfFile.value!);
+        debugPrint("📄 PDF disimpan di: $savedPdfPath");
       }
+
       final buku = Buku(
         id: DateTime.now().millisecondsSinceEpoch,
         judul: judulCtrl.text,
@@ -72,21 +93,26 @@ class BukuBukuCreateController extends GetxController {
         penerbit: penerbitCtrl.text,
         tahunTerbit: int.tryParse(tahunCtrl.text),
         isbn: isbnCtrl.text,
-        kategori: selectedKategori.value,
+        kategori: multiselectCtrl.selectedItems[0].value,
         ikhtisar: jsonEncode(quillCtrl.document.toDelta().toJson()),
+        pdfPath: savedPdfPath,
       );
 
-      debugPrint("📚 Buku berhasil dibuat: ${jsonEncode(buku.toJson())}");
+      await DatabaseHelper.insert("buku", buku.toModelJson());
+
+      // debugPrint("📚 Buku berhasil dibuat: ${jsonEncode(buku.toJson())}");
 
       Get.snackbar(
         "Sukses",
         "Buku berhasil ditambahkan",
-        snackPosition: SnackPosition.BOTTOM,
+        snackPosition: SnackPosition.TOP,
       );
 
       formKey.currentState!.reset();
       quillCtrl = QuillController.basic();
-      selectedKategori.value = null;
+      multiselectCtrl.clearAll();
+      pdfFile.value = null;
+
       update();
     }
   }

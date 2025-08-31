@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:tera_pustaka/app/theme/app_%20colors.dart';
 
 import '../controllers/splash_controller.dart';
-import '../../../assets_manager.dart' as assets;
+import '../../../utilities/assets_manager.dart' as assets;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SplashView extends GetView<SplashController> {

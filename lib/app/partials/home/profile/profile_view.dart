@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:tera_pustaka/app/components/navs/app_profile_menu.dart';
 import 'package:tera_pustaka/app/theme/app_%20colors.dart';
 import './profile_controller.dart';
-import '../../../assets_manager.dart' as assets;
+import '../../../utilities/assets_manager.dart' as assets;
 import 'package:google_fonts/google_fonts.dart';
 
 class ProfileView extends GetView<ProfileController> {

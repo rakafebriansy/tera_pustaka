@@ -9,7 +9,7 @@ import 'package:tera_pustaka/app/partials/home/nulis/nulis_view.dart';
 import 'package:tera_pustaka/app/partials/home/profile/profile_view.dart';
 
 import '../controllers/home_controller.dart';
-import '../../../assets_manager.dart' as assets;
+import '../../../utilities/assets_manager.dart' as assets;
 
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});

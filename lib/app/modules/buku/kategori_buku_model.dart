@@ -1,15 +1,11 @@
 class KategoriBuku {
-  num? id;
-  String? nama;
+  num id;
+  String nama;
 
-  KategoriBuku({
-    this.id,
-    this.nama,
-  });
+  KategoriBuku({required this.id, required this.nama});
 
-  KategoriBuku.fromJson(Map<String, dynamic> json) {
-    id = json['id'] as num?;
-    nama = json['nama'];
+  factory KategoriBuku.fromJson(Map<String, dynamic> json) {
+    return KategoriBuku(id: json['id'] as int, nama: json['nama'] as String);
   }
 
   Map<String, dynamic> toJson() {

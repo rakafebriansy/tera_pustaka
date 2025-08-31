@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tera_pustaka/app/components/forms/app_text_field.dart';
 import 'package:tera_pustaka/app/modules/buku/kategori_buku_model.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:multi_dropdown/multi_dropdown.dart';
 import 'package:tera_pustaka/app/theme/app_%20colors.dart';
 
 import '../controllers/buku_buku_create_controller.dart';
@@ -61,31 +61,48 @@ class BukuBukuCreateView extends GetView<BukuBukuCreateController> {
               SizedBox(height: 16.sp),
               Text('Kategori', style: GoogleFonts.poppins(fontSize: 16.sp)),
               SizedBox(height: 4.sp),
-              Obx(
-                () => DropdownButtonFormField2<KategoriBuku>(
-                  decoration: InputDecoration(
+              Obx(() {
+                return MultiDropdown<KategoriBuku>(
+                  items: controller.kategoriList.value,
+                  controller: controller.multiselectCtrl,
+                  enabled: true,
+                  singleSelect: true,
+                  chipDecoration: const ChipDecoration(
+                    backgroundColor: Colors.yellow,
+                    wrap: true,
+                    runSpacing: 2,
+                    spacing: 10,
+                  ),
+                  fieldDecoration: FieldDecoration(
+                    padding: EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+                    hintText: 'Pilih satu kategori',
+                    hintStyle: GoogleFonts.poppins(color: Colors.grey),
+                    showClearIcon: false,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
-                      borderSide: const BorderSide(
-                        color: Colors.grey,
-                        width: 1,
-                      ),
+                      borderSide: const BorderSide(color: Colors.grey),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: const BorderSide(color: Colors.black),
                     ),
                   ),
-                  isExpanded: true,
-                  value: controller.selectedKategori.value,
-                  items: controller.kategoriList
-                      .map(
-                        (e) => DropdownMenuItem(
-                          value: e,
-                          child: Text(e.nama ?? ""),
-                        ),
-                      )
-                      .toList(),
-                  onChanged: (val) => controller.selectedKategori.value = val,
-                  dropdownStyleData: DropdownStyleData(maxHeight: 200.sp),
-                ),
-              ),
+                  dropdownDecoration: DropdownDecoration(
+                    marginTop: 2,
+                    maxHeight: 200.sp,
+                  ),
+                  dropdownItemDecoration: DropdownItemDecoration(
+                    selectedIcon: const Icon(Icons.check, color: Colors.black),
+                    disabledIcon: Icon(Icons.lock, color: Colors.grey),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Pilih salah satu kategori';
+                    }
+                    return null;
+                  },
+                );
+              }),
               SizedBox(height: 16.sp),
               Text('File Buku', style: GoogleFonts.poppins(fontSize: 16.sp)),
               OutlinedButton.icon(

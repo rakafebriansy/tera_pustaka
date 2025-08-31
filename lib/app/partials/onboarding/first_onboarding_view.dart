@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tera_pustaka/app/components/app_title.dart';
 import 'package:tera_pustaka/app/theme/app_%20colors.dart';
-import '../../assets_manager.dart' as assets;
+import '../../utilities/assets_manager.dart' as assets;
 
 class FirstOnboardingView extends StatelessWidget {
   const FirstOnboardingView({super.key});

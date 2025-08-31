@@ -9,21 +9,57 @@ class AppTextField extends StatefulWidget {
     super.key,
     required this.label,
     required this.placeholder,
-    required this.onChanged,
-    this.hidden = false,
+    required this.controller,
+    this.obscure = false,
+    this.keyboardType,
+    this.rules,
+    this.confirmController,
   });
 
   final String label;
   final String placeholder;
-  final bool hidden;
-  final ValueChanged onChanged;
+  final TextEditingController controller;
+  final bool obscure;
+  final TextInputType? keyboardType;
+  final String? rules;
+  final TextEditingController? confirmController;
 
   @override
   State<AppTextField> createState() => _AppTextFieldState();
 }
 
 class _AppTextFieldState extends State<AppTextField> {
-  @override
+
+  String? _dynamicValidator(String? value) {
+    if (widget.rules == null) return null;
+
+    final rules = widget.rules!.split('|');
+
+    for (var rule in rules) {
+      if (rule == 'required') {
+        if (value == null || value.trim().isEmpty) {
+          return '${widget.label} wajib diisi';
+        }
+      }
+
+      if (rule.startsWith('min:')) {
+        final min = int.tryParse(rule.split(':')[1]) ?? 0;
+        if (value != null && value.length < min) {
+          return '${widget.label} minimal $min karakter';
+        }
+      }
+
+      if (rule == 'confirm_password') {
+        if (widget.confirmController != null &&
+            value != widget.confirmController!.text) {
+          return 'Konfirmasi password tidak sama';
+        }
+      }
+    }
+
+    return null;
+  }
+
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -31,9 +67,11 @@ class _AppTextFieldState extends State<AppTextField> {
       children: [
         Text(widget.label, style: GoogleFonts.poppins(fontSize: 16.sp)),
         SizedBox(height: 4.sp,),
-        TextField(
-          onChanged: widget.onChanged,
-          obscureText: widget.hidden,
+        TextFormField(
+          controller: widget.controller,
+          obscureText: widget.obscure,
+          keyboardType: widget.keyboardType ?? TextInputType.text,
+          validator: _dynamicValidator,
           decoration: InputDecoration(
             hintText: widget.placeholder,
             hintStyle: const TextStyle(color: Colors.grey),

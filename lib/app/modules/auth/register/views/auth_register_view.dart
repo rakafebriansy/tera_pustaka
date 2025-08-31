@@ -65,35 +65,31 @@ class AuthRegisterView extends GetView<AuthRegisterController> {
                     AppTextField(
                       label: 'Username',
                       placeholder: 'Masukkan username',
-                      onChanged: (value) {
-                        controller.username = value;
-                      },
+                      controller: controller.usernameCtrl,
+                      rules: 'required',
                     ),
                     SizedBox(height: 12.sp),
                     AppTextField(
                       label: 'Email',
                       placeholder: 'Masukkan email',
-                      onChanged: (value) {
-                        controller.email = value;
-                      },
+                      controller: controller.emailCtrl,
+                      rules: 'required',
                     ),
                     SizedBox(height: 12.sp),
                     AppTextField(
                       label: 'Password',
                       placeholder: 'Masukkan password',
-                      hidden: true,
-                      onChanged: (value) {
-                        controller.password = value;
-                      },
+                      obscure: true,
+                      controller: controller.passwordCtrl,
+                      rules: 'required',
                     ),
                     SizedBox(height: 12.sp),
                     AppTextField(
                       label: 'Konfirmasi Password',
                       placeholder: 'Masukkan konfirmasi password',
-                      hidden: true,
-                      onChanged: (value) {
-                        controller.confirmPassword = value;
-                      },
+                      obscure: true,
+                      controller: controller.confirmPasswordCtrl,
+                      rules: 'required|confirm_password',
                     ),
                     SizedBox(height: 12.sp),
                     AppDropdownField(

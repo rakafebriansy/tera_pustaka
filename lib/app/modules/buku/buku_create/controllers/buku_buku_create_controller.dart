@@ -1,5 +1,6 @@
 import 'dart:convert';
-
+import 'dart:io';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_quill/flutter_quill.dart';
@@ -15,12 +16,12 @@ class BukuBukuCreateController extends GetxController {
   final penerbitCtrl = TextEditingController();
   final tahunCtrl = TextEditingController();
   final isbnCtrl = TextEditingController();
-  final coverCtrl = TextEditingController();
 
   QuillController quillCtrl = QuillController.basic();
 
   var kategoriList = <KategoriBuku>[].obs;
   var selectedKategori = Rxn<KategoriBuku>();
+  var pdfFile = Rxn<File>();
 
   @override
   void onInit() {
@@ -48,8 +49,22 @@ class BukuBukuCreateController extends GetxController {
     kategoriList.value = data.map((e) => KategoriBuku.fromJson(e)).toList();
   }
 
+  Future<void> pickPdf() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['pdf'],
+    );
+
+    if (result != null && result.files.single.path != null) {
+      pdfFile.value = File(result.files.single.path!);
+    }
+  }
+
   void saveBuku() {
     if (formKey.currentState!.validate()) {
+      if (pdfFile.value != null) {
+        print("PDF path: ${pdfFile.value!.path}");
+      }
       final buku = Buku(
         id: DateTime.now().millisecondsSinceEpoch,
         judul: judulCtrl.text,
@@ -57,7 +72,6 @@ class BukuBukuCreateController extends GetxController {
         penerbit: penerbitCtrl.text,
         tahunTerbit: int.tryParse(tahunCtrl.text),
         isbn: isbnCtrl.text,
-        coverUrl: coverCtrl.text,
         kategori: selectedKategori.value,
         ikhtisar: jsonEncode(quillCtrl.document.toDelta().toJson()),
       );

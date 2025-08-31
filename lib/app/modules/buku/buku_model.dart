@@ -7,7 +7,6 @@ class Buku {
   String? penerbit;
   num? tahunTerbit;
   String? isbn;
-  String? coverUrl;
   String? ikhtisar;
   KategoriBuku? kategori;
 
@@ -18,7 +17,6 @@ class Buku {
     this.penerbit,
     this.tahunTerbit,
     this.isbn,
-    this.coverUrl,
     this.kategori,
     this.ikhtisar,
   });
@@ -31,7 +29,6 @@ class Buku {
     tahunTerbit = json['tahun_terbit'] as num?;
     isbn = json['isbn'];
     ikhtisar = json['ikhtisar'];
-    coverUrl = json['cover_url'];
     kategori = json['kategori'] != null
         ? KategoriBuku?.fromJson(json['kategori'])
         : null;
@@ -46,7 +43,6 @@ class Buku {
     data['tahun_terbit'] = tahunTerbit;
     data['isbn'] = isbn;
     data['ikhtisar'] = ikhtisar;
-    data['cover_url'] = coverUrl;
     if (kategori != null) {
       data['kategori'] = kategori?.toJson();
     }

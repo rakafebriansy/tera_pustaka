@@ -62,18 +62,14 @@ class AuthLoginView extends GetView<AuthLoginController> {
                   AppTextField(
                     label: 'Username',
                     placeholder: 'Masukkan username',
-                    onChanged: (value) {
-                      controller.username = value;
-                    },
+                    controller: controller.usernameCtrl,
                   ),
                   SizedBox(height: 12.sp),
                   AppTextField(
                     label: 'Password',
                     placeholder: 'Masukkan password',
-                    hidden: true,
-                    onChanged: (value) {
-                      controller.password = value;
-                    },
+                    obscure: true,
+                    controller: controller.passwordCtrl,
                   ),
                   SizedBox(height: 16.sp),
                   SizedBox(

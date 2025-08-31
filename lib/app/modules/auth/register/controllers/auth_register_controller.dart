@@ -1,10 +1,11 @@
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class AuthRegisterController extends GetxController {
-  String? username;
-  String? email;
-  String? password;
-  String? confirmPassword;
+  TextEditingController usernameCtrl = TextEditingController();
+  TextEditingController emailCtrl = TextEditingController();
+  TextEditingController passwordCtrl = TextEditingController();
+  TextEditingController confirmPasswordCtrl = TextEditingController();
   String? role;
   Rx<bool> isCheckedTnC = false.obs;
 

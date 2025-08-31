@@ -1,8 +1,9 @@
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class AuthLoginController extends GetxController {
-  String? username;
-  String? password;
+  TextEditingController usernameCtrl = TextEditingController();
+  TextEditingController passwordCtrl = TextEditingController();
 
   @override
   void onInit() {

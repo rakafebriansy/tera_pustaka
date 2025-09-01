@@ -1,23 +1,12 @@
 import 'package:get/get.dart';
+import 'package:tera_pustaka/app/modules/buku/buku_model.dart';
 
 class BukuBukuDetailController extends GetxController {
-  //TODO: Implement BukuBukuDetailController
+  late Buku buku;
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
+    buku = Get.arguments as Buku;
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }

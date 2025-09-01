@@ -1,11 +1,12 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_quill/flutter_quill.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tera_pustaka/app/components/app_pdf_cover.dart';
 import 'package:tera_pustaka/app/components/charts/app_detail_buku_info_card.dart';
 import 'package:tera_pustaka/app/theme/app_%20colors.dart';
-
 import '../controllers/buku_buku_detail_controller.dart';
 
 class BukuBukuDetailView extends GetView<BukuBukuDetailController> {
@@ -13,20 +14,11 @@ class BukuBukuDetailView extends GetView<BukuBukuDetailController> {
 
   @override
   Widget build(BuildContext context) {
-    Map<String, String> book = {
-      "judul": "Ksatria, Putri, dan Bintang Jatuh",
-      "penulis": "Dee Lestari",
-      "tahun": "2023",
-      "dilihat": "400",
-      "kategori": "Novel",
-      "penerbit": "ElexMedia",
-    };
+    final buku = controller.buku;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Ksatria, Putri, dan Bintang Jatuh',
-          style: GoogleFonts.poppins(),
-        ),
+        title: Text(buku.judul, style: GoogleFonts.poppins()),
         centerTitle: true,
       ),
       body: Padding(
@@ -38,10 +30,10 @@ class BukuBukuDetailView extends GetView<BukuBukuDetailController> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Container(
-                  color: Colors.grey[300],
+                SizedBox(
                   width: MediaQuery.of(context).size.width * 0.5,
                   height: MediaQuery.of(context).size.height * 0.3,
+                  child: AppPdfCover(path: buku.pdfPath),
                 ),
                 SizedBox(height: 24.sp),
                 GridView.count(
@@ -53,15 +45,15 @@ class BukuBukuDetailView extends GetView<BukuBukuDetailController> {
                   childAspectRatio: 16 / 9,
                   children: [
                     AppDetailBukuInfoCard(
-                      label: book['penulis']!,
+                      label: buku.penulis,
                       iconData: Icons.person_outline,
                     ),
                     AppDetailBukuInfoCard(
-                      label: book['tahun']!,
+                      label: buku.tahunTerbit.toString(),
                       iconData: Icons.calendar_month_outlined,
                     ),
                     AppDetailBukuInfoCard(
-                      label: book['dilihat']!,
+                      label: "0",
                       iconData: Icons.remove_red_eye_outlined,
                     ),
                   ],
@@ -69,7 +61,7 @@ class BukuBukuDetailView extends GetView<BukuBukuDetailController> {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    'Preview',
+                    'Ikhtisar',
                     style: GoogleFonts.poppins(
                       fontWeight: FontWeight.w600,
                       fontSize: 14.sp,
@@ -79,21 +71,18 @@ class BukuBukuDetailView extends GetView<BukuBukuDetailController> {
                 SizedBox(height: 4.sp),
                 SizedBox(
                   height: 160.sp,
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          '\"Aku tahu sekarang, lebih banyak luka di hati bapakku dibanding di tubuhnya. Juga mamakku, lebih banyak tangis di hati Mamak dibanding di matanya."Sebuah kisah tentang perjalanan pulang, melalui pertarungan demi pertarungan, untuk memeluk erat semua kebencian dan rasa sakit.\"\nNovel Ksatria, Putri, dan Bintang Jatuh karya Dee Lestari menghadirkan kisah persahabatan, cinta, dan perjalanan menemukan jati diri yang dibalut dengan nuansa remaja yang hangat. Cerita ini berfokus pada tiga tokoh utama dengan latar kehidupan sekolah, mimpi, serta konflik yang dekat dengan pembaca muda. Dee berhasil menghidupkan karakter-karakter dengan dialog yang segar dan alur yang mengalir ringan namun tetap sarat makna. Pesan moral tentang keberanian meraih cita-cita, menghargai persahabatan, dan ketulusan hati membuat novel ini relevan untuk segala kalangan. Sebuah bacaan inspiratif yang layak diapresiasi.',
-                          style: GoogleFonts.poppins(),
-                        ),
-                      ],
+                  child: QuillEditor(
+                    controller: QuillController(
+                      document: Document.fromJson(jsonDecode(buku.ikhtisar)),
+                      selection: const TextSelection.collapsed(offset: 0),
                     ),
+                    focusNode: FocusNode(),
+                    scrollController: ScrollController(),
                   ),
                 ),
               ],
             ),
+
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
@@ -107,7 +96,9 @@ class BukuBukuDetailView extends GetView<BukuBukuDetailController> {
                     borderRadius: BorderRadius.circular(12.sp),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  // Navigasi ke halaman baca PDF
+                },
                 child: Text(
                   "Baca",
                   style: TextStyle(

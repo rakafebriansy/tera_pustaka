@@ -112,6 +112,7 @@ class ProfileView extends GetView<ProfileController> {
                 label: 'Pengaturan',
                 iconData: Icons.settings,
               ),
+              SizedBox(height: 12.sp),
               AppProfileMenu(
                 onTap: () {},
                 label: 'Bantuan',

@@ -11,6 +11,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:tera_pustaka/app/utilities/database_helper.dart';
+import 'package:tera_pustaka/app/utilities/kategori_repository.dart';
 
 class BukuBukuCreateController extends GetxController {
   final formKey = GlobalKey<FormState>();
@@ -45,18 +46,13 @@ class BukuBukuCreateController extends GetxController {
   }
 
   Future<void> loadKategori() async {
-    final String jsonString = await rootBundle.loadString(
-      'assets/startup_data/kategori_buku.json',
-    );
-    final List<dynamic> data = jsonDecode(jsonString);
-
-    var kategoris = data.map((e) {
-      final kategori = KategoriBuku.fromJson(e);
+    final kategoris = await KategoriRepository.allKategoris();
+    final kategoriDropdowns = kategoris.map((kategori) {
       return DropdownItem(label: kategori.nama, value: kategori);
     }).toList();
 
-    multiselectCtrl.setItems(kategoris);
-    kategoriList.value = kategoris;
+    multiselectCtrl.setItems(kategoriDropdowns);
+    kategoriList.value = kategoriDropdowns;
   }
 
   Future<void> pickPdf() async {
@@ -79,28 +75,39 @@ class BukuBukuCreateController extends GetxController {
 
   void saveBuku() async {
     if (formKey.currentState!.validate()) {
-      String? savedPdfPath;
+      final tahun = int.parse(tahunCtrl.text);
 
+      // handle pdf path (wajib isi, tapi kalau null kasih string kosong)
+      String savedPdfPath = "";
       if (pdfFile.value != null) {
         savedPdfPath = await savePdfLocally(pdfFile.value!);
-        debugPrint("📄 PDF disimpan di: $savedPdfPath");
+        // debugPrint("📄 PDF disimpan di: $savedPdfPath");
       }
+
+      if (multiselectCtrl.selectedItems.isEmpty) {
+        Get.snackbar(
+          "Gagal",
+          "Kategori buku harus dipilih",
+          snackPosition: SnackPosition.TOP,
+        );
+        return;
+      }
+
+      final kategori = multiselectCtrl.selectedItems[0].value;
 
       final buku = Buku(
         id: DateTime.now().millisecondsSinceEpoch,
         judul: judulCtrl.text,
         penulis: penulisCtrl.text,
         penerbit: penerbitCtrl.text,
-        tahunTerbit: int.tryParse(tahunCtrl.text),
+        tahunTerbit: tahun,
         isbn: isbnCtrl.text,
-        kategori: multiselectCtrl.selectedItems[0].value,
+        kategori: kategori,
         ikhtisar: jsonEncode(quillCtrl.document.toDelta().toJson()),
         pdfPath: savedPdfPath,
       );
 
       await DatabaseHelper.insert("buku", buku.toModelJson());
-
-      // debugPrint("📚 Buku berhasil dibuat: ${jsonEncode(buku.toJson())}");
 
       Get.snackbar(
         "Sukses",

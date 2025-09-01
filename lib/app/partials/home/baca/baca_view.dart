@@ -64,11 +64,15 @@ class BacaView extends GetView<BacaController> {
                         separatorBuilder: (context, index) =>
                             SizedBox(width: 12.sp),
                         itemBuilder: (context, index) {
+                          final buku = controller.recommendationBooks[index];
                           return AppBukuCard(
                             onTap: () {
-                              Get.toNamed(Routes.BUKU_BUKU_DETAIL);
+                              Get.toNamed(
+                                Routes.BUKU_BUKU_DETAIL,
+                                arguments: buku,
+                              );
                             },
-                            label: controller.recommendationBooks[index],
+                            path: controller.recommendationBooks[index].pdfPath,
                           );
                         },
                       ),
@@ -104,7 +108,7 @@ class BacaView extends GetView<BacaController> {
                             ),
                             child: Center(
                               child: Text(
-                                controller.popularBooks[index],
+                                controller.popularBooks[index].judul,
                                 style: const TextStyle(color: Colors.white),
                               ),
                             ),
@@ -143,7 +147,7 @@ class BacaView extends GetView<BacaController> {
                             ),
                             child: Center(
                               child: Text(
-                                controller.recommendationJournals[index],
+                                controller.recommendationJournals[index].judul,
                                 style: const TextStyle(color: Colors.white),
                               ),
                             ),

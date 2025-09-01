@@ -47,6 +47,7 @@ dependencies:
   flutter_keyboard_visibility_temp_fork: ^0.1.5
   flutter_quill: ^11.4.2
   multi_dropdown: ^3.0.1
+  pdfx: ^2.9.2
 
 dev_dependencies:
   flutter_test:

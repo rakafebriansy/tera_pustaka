@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tera_pustaka/app/components/app_pdf_cover.dart';
 import 'package:tera_pustaka/app/components/charts/app_detail_buku_info_card.dart';
+import 'package:tera_pustaka/app/routes/app_pages.dart';
 import 'package:tera_pustaka/app/theme/app_%20colors.dart';
 import '../controllers/buku_buku_detail_controller.dart';
 
@@ -97,7 +98,7 @@ class BukuBukuDetailView extends GetView<BukuBukuDetailController> {
                   ),
                 ),
                 onPressed: () {
-                  // Navigasi ke halaman baca PDF
+                  Get.toNamed(Routes.BUKU_BUKU_LIHAT_PDF, arguments: buku.pdfPath);
                 },
                 child: Text(
                   "Baca",

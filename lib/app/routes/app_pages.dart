@@ -16,6 +16,8 @@ import '../modules/buku/buku_kategori_edit/bindings/buku_buku_kategori_edit_bind
 import '../modules/buku/buku_kategori_edit/views/buku_buku_kategori_edit_view.dart';
 import '../modules/buku/buku_kategori_list/bindings/buku_buku_kategori_list_binding.dart';
 import '../modules/buku/buku_kategori_list/views/buku_buku_kategori_list_view.dart';
+import '../modules/buku/buku_lihat_pdf/bindings/buku_buku_lihat_pdf_binding.dart';
+import '../modules/buku/buku_lihat_pdf/views/buku_buku_lihat_pdf_view.dart';
 import '../modules/buku/buku_list/bindings/buku_buku_list_binding.dart';
 import '../modules/buku/buku_list/views/buku_buku_list_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -141,6 +143,11 @@ class AppPages {
       name: _Paths.ONBOARDING,
       page: () => const OnboardingView(),
       binding: OnboardingBinding(),
+    ),
+    GetPage(
+      name: _Paths.BUKU_BUKU_LIHAT_PDF,
+      page: () => const BukuBukuLihatPdfView(),
+      binding: BukuBukuLihatPdfBinding(),
     ),
   ];
 }

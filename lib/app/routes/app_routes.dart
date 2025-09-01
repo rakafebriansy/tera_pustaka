@@ -25,6 +25,7 @@ abstract class Routes {
   static const KUIS_KUIS_ATTEMPT = _Paths.KUIS_KUIS_ATTEMPT;
   static const SPLASH = _Paths.SPLASH;
   static const ONBOARDING = _Paths.ONBOARDING;
+  static const BUKU_BUKU_LIHAT_PDF = _Paths.BUKU_BUKU_LIHAT_PDF;
 }
 
 abstract class _Paths {
@@ -49,4 +50,5 @@ abstract class _Paths {
   static const KUIS_KUIS_ATTEMPT = '/kuis-attempt';
   static const SPLASH = '/splash';
   static const ONBOARDING = '/onboarding';
+  static const BUKU_BUKU_LIHAT_PDF = '/buku-lihat-pdf';
 }

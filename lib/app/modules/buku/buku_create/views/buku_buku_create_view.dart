@@ -105,32 +105,32 @@ class BukuBukuCreateView extends GetView<BukuBukuCreateController> {
               }),
               SizedBox(height: 16.sp),
               Text('File Buku', style: GoogleFonts.poppins(fontSize: 16.sp)),
-              OutlinedButton.icon(
-                onPressed: controller.pickPdf,
-                style: OutlinedButton.styleFrom(
-                  side: const BorderSide(width: 1, color: Colors.grey),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+              Obx(
+                () => OutlinedButton.icon(
+                  onPressed: controller.pickPdf,
+                  style: OutlinedButton.styleFrom(
+                    side: const BorderSide(width: 1, color: Colors.grey),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 16,
+                    ),
                   ),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 16,
-                  ),
-                ),
-                icon: const Icon(Icons.upload_file),
-                label: Text("Unggah PDF", style: GoogleFonts.poppins()),
-              ),
-              if (controller.pdfFile.value != null)
-                Padding(
-                  padding: EdgeInsets.only(top: 8.sp),
-                  child: Text(
-                    "Dipilih: ${controller.pdfFile.value!.path.split('/').last}",
-                    style: const TextStyle(
-                      fontSize: 14,
-                      fontStyle: FontStyle.italic,
+                  icon: const Icon(Icons.upload_file),
+                  label: Text(
+                    controller.pdfFile.value == null
+                        ? "Unggah PDF"
+                        : controller.pdfFile.value!.path.split('/').last,
+                    style: GoogleFonts.poppins(
+                      fontStyle: controller.pdfFile.value == null
+                          ? FontStyle.normal
+                          : FontStyle.italic,
                     ),
                   ),
                 ),
+              ),
               SizedBox(height: 20.sp),
               Text('Ikhtisar', style: GoogleFonts.poppins(fontSize: 16.sp)),
               QuillSimpleToolbar(

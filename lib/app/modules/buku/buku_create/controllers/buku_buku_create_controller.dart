@@ -9,7 +9,7 @@ import 'package:tera_pustaka/app/modules/buku/buku_model.dart';
 import 'package:tera_pustaka/app/modules/buku/kategori_buku_model.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:tera_pustaka/app/routes/app_pages.dart';
 import 'package:tera_pustaka/app/utilities/database_helper.dart';
 import 'package:tera_pustaka/app/utilities/kategori_repository.dart';
 
@@ -27,6 +27,7 @@ class BukuBukuCreateController extends GetxController {
 
   var pdfFile = Rxn<File>();
   var kategoriList = <DropdownItem<KategoriBuku>>[].obs;
+  var isSubmitted = false.obs;
 
   @override
   void onInit() {
@@ -75,6 +76,7 @@ class BukuBukuCreateController extends GetxController {
 
   void saveBuku() async {
     if (formKey.currentState!.validate()) {
+      isSubmitted.value = true;
       final tahun = int.parse(tahunCtrl.text);
 
       // handle pdf path (wajib isi, tapi kalau null kasih string kosong)
@@ -120,7 +122,9 @@ class BukuBukuCreateController extends GetxController {
       multiselectCtrl.clearAll();
       pdfFile.value = null;
 
-      update();
+      isSubmitted.value = false;
+      Get.offAllNamed(Routes.HOME);
+      loadKategori();
     }
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tera_pustaka/app/components/navs/app_profile_menu.dart';
+import 'package:tera_pustaka/app/routes/app_pages.dart';
 import 'package:tera_pustaka/app/theme/app_%20colors.dart';
 import './profile_controller.dart';
 import '../../../utilities/assets_manager.dart' as assets;
@@ -140,7 +141,9 @@ class ProfileView extends GetView<ProfileController> {
                   borderRadius: BorderRadius.circular(12.sp),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Get.offAllNamed(Routes.AUTH_LOGIN);
+              },
               child: Text(
                 "Keluar",
                 style: TextStyle(

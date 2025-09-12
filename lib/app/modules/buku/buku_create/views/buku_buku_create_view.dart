@@ -149,25 +149,33 @@ class BukuBukuCreateView extends GetView<BukuBukuCreateController> {
                 ),
               ),
               SizedBox(height: 20.sp),
-              ElevatedButton.icon(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.secondary,
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 32.sp,
-                    vertical: 12.sp,
+              Obx(
+                () => ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.secondary,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 32.sp,
+                      vertical: 12.sp,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.sp),
+                    ),
                   ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12.sp),
-                  ),
-                ),
-                onPressed: controller.saveBuku,
-                icon: const Icon(Icons.save, color: Colors.white),
-                label: Text(
-                  "Simpan",
-                  style: TextStyle(
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                  onPressed: controller.saveBuku,
+                  icon: controller.isSubmitted.value
+                      ? SizedBox(
+                          child: CircularProgressIndicator(color: Colors.white),
+                          width: 12.sp,
+                          height: 12.sp,
+                        )
+                      : Icon(Icons.save, color: Colors.white),
+                  label: Text(
+                    "Simpan",
+                    style: TextStyle(
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),

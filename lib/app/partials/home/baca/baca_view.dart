@@ -96,22 +96,19 @@ class BacaView extends GetView<BacaController> {
                       height: 120.sp,
                       child: ListView.separated(
                         scrollDirection: Axis.horizontal,
-                        itemCount: controller.popularBooks.length,
+                        itemCount: controller.recommendationBooks.length,
                         separatorBuilder: (context, index) =>
                             SizedBox(width: 12.sp),
                         itemBuilder: (context, index) {
-                          return Container(
-                            width: 100.sp,
-                            decoration: BoxDecoration(
-                              color: Colors.blue,
-                              borderRadius: BorderRadius.circular(12.sp),
-                            ),
-                            child: Center(
-                              child: Text(
-                                controller.popularBooks[index].judul,
-                                style: const TextStyle(color: Colors.white),
-                              ),
-                            ),
+                          final buku = controller.recommendationBooks[index];
+                          return AppBukuCard(
+                            onTap: () {
+                              Get.toNamed(
+                                Routes.BUKU_BUKU_DETAIL,
+                                arguments: buku,
+                              );
+                            },
+                            path: controller.recommendationBooks[index].pdfPath,
                           );
                         },
                       ),
@@ -135,22 +132,19 @@ class BacaView extends GetView<BacaController> {
                       height: 120.sp,
                       child: ListView.separated(
                         scrollDirection: Axis.horizontal,
-                        itemCount: controller.recommendationJournals.length,
+                        itemCount: controller.recommendationBooks.length,
                         separatorBuilder: (context, index) =>
                             SizedBox(width: 12.sp),
                         itemBuilder: (context, index) {
-                          return Container(
-                            width: 100.sp,
-                            decoration: BoxDecoration(
-                              color: Colors.blue,
-                              borderRadius: BorderRadius.circular(12.sp),
-                            ),
-                            child: Center(
-                              child: Text(
-                                controller.recommendationJournals[index].judul,
-                                style: const TextStyle(color: Colors.white),
-                              ),
-                            ),
+                          final buku = controller.recommendationBooks[index];
+                          return AppBukuCard(
+                            onTap: () {
+                              Get.toNamed(
+                                Routes.BUKU_BUKU_DETAIL,
+                                arguments: buku,
+                              );
+                            },
+                            path: controller.recommendationBooks[index].pdfPath,
                           );
                         },
                       ),
